@@ -7,7 +7,6 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import views.persistence.implementation.swing.SwingImageLoader;
 
 public class ApplicationFrame extends JFrame {
     
@@ -67,6 +66,6 @@ public class ApplicationFrame extends JFrame {
     }
     
     private Image readImage() {
-        return new SwingImageLoader().load(actualImage);
+        return null;
     }
 }

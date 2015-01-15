@@ -1,6 +1,6 @@
 package views.persistence.interfaces;
 
-import java.awt.Image;
+import model.Image;
 
 public interface ImageLoader {
     public Image load (String filename);
