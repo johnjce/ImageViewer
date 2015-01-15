@@ -2,12 +2,15 @@
 package model;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 public class SwingProxyImage implements Image {
     
     private String filename;
-    
-    private BufferedImage image;
     
     private Image next;
     private Image prev;
@@ -18,7 +21,11 @@ public class SwingProxyImage implements Image {
     
     @Override
     public Bitmap getBitmap() {
-        return new SwingBitmap(image.getRGB(0, 0, 0, 0, null, 0, 0));
+        try {
+            return new SwingBitmap(ImageIO.read(new File(filename)).get);
+        } catch (IOException ex) {
+            return null;
+        }
     }
 
     @Override
