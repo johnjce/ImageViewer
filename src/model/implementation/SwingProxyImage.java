@@ -1,18 +1,17 @@
 
-package model;
+package model.implementation;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import model.Bitmap;
+import model.Image;
 import views.persistence.interfaces.ImageLoader;
 
 public class SwingProxyImage implements Image {
     
     private ImageLoader loader;
-    private String filename;
-    
-    private BufferedImage image;
     
     private Image next;
     private Image prev;

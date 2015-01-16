@@ -7,6 +7,6 @@ public class FileImageLoader implements ImageLoader {
 
     @Override
     public Image load(String filename) {
-        return null;
+        return new SwingProxyImage();
     }
 }

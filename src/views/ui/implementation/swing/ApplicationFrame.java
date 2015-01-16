@@ -1,71 +1,43 @@
 package views.ui.implementation.swing;
 
+import control.implementation.NextImageCommand;
+import control.implementation.PreviousImageCommand;
+import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class ApplicationFrame extends JFrame {
     
-    private Image image;
-    private final String actualImage = "Chrysanthemum.jpg";
+    private SwingImageViewer imageViewer;
     
     public ApplicationFrame () {
-        setTitle("Image Viewer");
+        super(" Image Viewer ");
         setMinimumSize(new Dimension(300, 300));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        image = readImage();
         createWidget();
         setVisible(true);
     }
 
     private void createWidget() {
-        add(createImagePanel());
+        add(createImageViewer(), BorderLayout.SOUTH);
+        add(createButtons(), BorderLayout.NORTH);
     }
 
-    private JPanel createImagePanel() {
-       return new JPanel() {
-            {
-                getContentPane().addComponentListener(createComponentListener());
-            }
-            
-            @Override
-            public void paint(Graphics g) {
-                super.paint(g); 
-                g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-            }
-
-            private ComponentListener createComponentListener() {
-                return new ComponentListener() {
-
-                    @Override
-                    public void componentResized(ComponentEvent e) {
-                        revalidate();
-                    }
-
-                    @Override
-                    public void componentMoved(ComponentEvent e) {
-                    }
-
-                    @Override
-                    public void componentShown(ComponentEvent e) {
-                    }
-
-                    @Override
-                    public void componentHidden(ComponentEvent e) {
-                    }
-                };
-            }
-            
-            
-            
-        };
+    private JPanel createImageViewer() {
+        imageViewer = new SwingImageViewer();
+        return imageViewer;
     }
-    
-    private Image readImage() {
-        return null;
+
+    private JPanel createButtons() {
+        JPanel buttonPanel = new JPanel();     
+        JButton next = new JButton("Next");
+        next.addActionListener(new NextImageCommand());
+        JButton previous = new JButton("Previous");
+        previous.addActionListener(new PreviousImageCommand());      
+        buttonPanel.add(next);
+        buttonPanel.add(previous);
+        return buttonPanel;
     }
 }

@@ -1,4 +1,6 @@
-package model;
+package model.implementation;
+
+import model.Bitmap;
 
 public class SwingBitmap implements Bitmap {
 
