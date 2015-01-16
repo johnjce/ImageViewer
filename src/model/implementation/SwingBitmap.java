@@ -4,14 +4,14 @@ import model.Bitmap;
 
 public class SwingBitmap implements Bitmap {
 
-    private int [] pixels;
+    private byte [] pixels;
     
-    public SwingBitmap (int [] pixels) {
+    public SwingBitmap (byte [] pixels) {
         this.pixels=pixels;
     }
     
     @Override
-    public int[] getPixels() {
+    public byte[] getPixels() {
         return this.pixels;
     }
     

@@ -2,6 +2,7 @@
 package model.implementation;
 
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -15,22 +16,20 @@ public class SwingProxyImage implements Image {
     
     private Image next;
     private Image prev;
+    private Image currentImage;
 
-    public SwingProxyImage (ImageLoader loader, String filename) {
+    public SwingProxyImage (ImageLoader loader) {
         this.loader = loader;
-        this.filename= filename;
     }
     
     @Override
     public Bitmap getBitmap() {
-        try {
-            image = ImageIO.read(new File(filename));
-            return new SwingBitmap(image.getRGB(0, 0, image.getWidth(), image.getHeight(), null, 0, image.getWidth()));
-        } catch (IOException ex) {
-            return null;
+        if (currentImage != null) {
+            currentImage = loader.load();
         }
+        return currentImage.getBitmap();
     }
-
+    
     @Override
     public Image getNext() {
         return next;

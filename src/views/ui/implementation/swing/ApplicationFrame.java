@@ -33,9 +33,9 @@ public class ApplicationFrame extends JFrame {
     private JPanel createButtons() {
         JPanel buttonPanel = new JPanel();     
         JButton next = new JButton("Next");
-        next.addActionListener(new NextImageCommand());
+        next.addActionListener(new NextImageCommand(imageViewer));
         JButton previous = new JButton("Previous");
-        previous.addActionListener(new PreviousImageCommand());      
+        previous.addActionListener(new PreviousImageCommand(imageViewer));      
         buttonPanel.add(next);
         buttonPanel.add(previous);
         return buttonPanel;
