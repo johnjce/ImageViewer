@@ -34,13 +34,17 @@ public class ApplicationFrame extends JFrame {
 
     private JPanel createButtons() {
         panelButton = new JPanel();
-        JButton next = new JButton("Next");
-        next.addActionListener(new NextImageCommand(imageViewer));
-        JButton previous = new JButton("Previous");
-        previous.addActionListener(new PreviousImageCommand(imageViewer));      
-        panelButton.add(previous);
-        panelButton.add(next);
+        JButton nextButton = new JButton("Next");
+        JButton previousButton = new JButton("Previous");
+        addListeners(previousButton, nextButton);
+        panelButton.add(previousButton);
+        panelButton.add(nextButton);
         return panelButton;
-    }  
+    }
+    
+    private void addListeners (JButton previousButton, JButton nextButton) {
+        previousButton.addActionListener(new PreviousImageCommand(imageViewer)); 
+        nextButton.addActionListener(new NextImageCommand(imageViewer));
+    }
     
 }
