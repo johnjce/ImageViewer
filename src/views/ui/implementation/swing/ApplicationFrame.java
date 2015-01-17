@@ -3,7 +3,10 @@ package views.ui.implementation.swing;
 import control.implementation.NextImageCommand;
 import control.implementation.PreviousImageCommand;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,7 +19,7 @@ public class ApplicationFrame extends JFrame {
     public ApplicationFrame () {
         super(" Image Viewer ");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(1030,800));
+        setMinimumSize(new Dimension(1280,835));
         setResizable(false);
         createWidget();
         setVisible(true);
@@ -24,7 +27,7 @@ public class ApplicationFrame extends JFrame {
 
     private void createWidget() {
         add(createImageViewer(), BorderLayout.CENTER);
-        add(createButtons(), BorderLayout.SOUTH);
+        add(createPanelButtons(), BorderLayout.SOUTH);
     }
 
     private JPanel createImageViewer() {
@@ -32,10 +35,19 @@ public class ApplicationFrame extends JFrame {
         return imageViewer;
     }
 
-    private JPanel createButtons() {
-        panelButton = new JPanel();
-        JButton nextButton = new JButton("Next");
-        JButton previousButton = new JButton("Previous");
+    private JPanel createPanelButtons() {
+        panelButton = new JPanel() {
+            
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.setColor(Color.WHITE);
+                g.clearRect(0, 0, this.getWidth(), this.getHeight());
+            }
+            
+        };
+        JButton nextButton = new JButton("NEXT");
+        JButton previousButton = new JButton("PREVIOUS");
         addListeners(previousButton, nextButton);
         panelButton.add(previousButton);
         panelButton.add(nextButton);

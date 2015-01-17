@@ -1,12 +1,11 @@
 package views.ui.implementation.swing;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
-import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -21,7 +20,6 @@ public class SwingImageViewer extends JPanel implements ImageViewer {
     
     private Image image;
     
-    private double scale=1;
     private int positionMouse=0;
     
     public SwingImageViewer () {
@@ -42,12 +40,14 @@ public class SwingImageViewer extends JPanel implements ImageViewer {
     }
 
     @Override
-    public void paint (Graphics g) {
+    public void paintComponent (Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        super.paint(g2d);
+        super.paintComponent(g2d);
         try {
-            AffineTransform xform = AffineTransform.getScaleInstance(scale, scale);
-            g2d.drawImage(ImageIO.read(new ByteArrayInputStream(image.getBitmap().getPixels())), xform, null);
+            g2d.setColor(Color.WHITE);
+            g2d.clearRect(0, 0, this.getWidth(), this.getHeight());
+            BufferedImage bim = ImageIO.read(new ByteArrayInputStream(image.getBitmap().getPixels()));      
+            g2d.drawImage(bim, ((this.getWidth() - bim.getWidth())/2),((this.getHeight() - bim.getHeight())/2), null);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -72,11 +72,10 @@ public class SwingImageViewer extends JPanel implements ImageViewer {
 
             @Override
             public void mouseReleased(MouseEvent me) {
-                if (positionMouse >= me.getX()) {
+                if (positionMouse >= me.getX())
                     image=image.getNext();
-                } else {
+                else 
                     image=image.getPrev();
-                }
                 repaint();
             }
 
