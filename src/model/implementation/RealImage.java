@@ -18,11 +18,13 @@ public class RealImage implements Image {
 
     @Override
     public Image getNext() {
+        System.out.println("asdas");
         return null;
     }
 
     @Override
     public Image getPrev() {
+        System.out.println("asdas");
         return null;
     }
        

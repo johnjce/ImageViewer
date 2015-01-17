@@ -1,11 +1,6 @@
 
-package model.implementation;
+package views.persistence.implementation.swing;
 
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import model.Bitmap;
 import model.Image;
 import views.persistence.interfaces.ImageLoader;
@@ -24,7 +19,7 @@ public class SwingProxyImage implements Image {
     
     @Override
     public Bitmap getBitmap() {
-        if (currentImage != null) {
+        if (currentImage == null) {
             currentImage = loader.load();
         }
         return currentImage.getBitmap();
@@ -38,6 +33,14 @@ public class SwingProxyImage implements Image {
     @Override
     public Image getPrev() {
         return prev;
+    }
+
+    public void setNext(Image image) {
+        this.next=image;
+    }
+
+    public void setPrev(Image image) {
+        this.prev=image;
     }
     
 }

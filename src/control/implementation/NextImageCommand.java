@@ -19,7 +19,7 @@ public class NextImageCommand implements Command {
     
     @Override
     public void actionPerformed(ActionEvent ae) {
-           execute();
+        execute();
     }
     
 }

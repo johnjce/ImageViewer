@@ -1,4 +1,4 @@
-package model.implementation;
+package views.persistence.implementation.swing;
 
 import model.Bitmap;
 

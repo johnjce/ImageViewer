@@ -11,18 +11,20 @@ import javax.swing.JPanel;
 public class ApplicationFrame extends JFrame {
     
     private SwingImageViewer imageViewer;
+    private JPanel panelButton;
     
     public ApplicationFrame () {
         super(" Image Viewer ");
-        setMinimumSize(new Dimension(300, 300));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setMinimumSize(new Dimension(1030,800));
+        setResizable(false);
         createWidget();
         setVisible(true);
     }
 
     private void createWidget() {
-        add(createImageViewer(), BorderLayout.SOUTH);
-        add(createButtons(), BorderLayout.NORTH);
+        add(createImageViewer(), BorderLayout.CENTER);
+        add(createButtons(), BorderLayout.SOUTH);
     }
 
     private JPanel createImageViewer() {
@@ -31,13 +33,14 @@ public class ApplicationFrame extends JFrame {
     }
 
     private JPanel createButtons() {
-        JPanel buttonPanel = new JPanel();     
+        panelButton = new JPanel();
         JButton next = new JButton("Next");
         next.addActionListener(new NextImageCommand(imageViewer));
         JButton previous = new JButton("Previous");
         previous.addActionListener(new PreviousImageCommand(imageViewer));      
-        buttonPanel.add(next);
-        buttonPanel.add(previous);
-        return buttonPanel;
-    }
+        panelButton.add(previous);
+        panelButton.add(next);
+        return panelButton;
+    }  
+    
 }
