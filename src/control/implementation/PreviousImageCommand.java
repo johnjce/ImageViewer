@@ -8,7 +8,7 @@ public class PreviousImageCommand implements Command {
 
     private ImageViewer imageViewer;
     
-    public PreviousImageCommand (ImageViewer imageViewer) {
+    public void setImageViewer (ImageViewer imageViewer) {
         this.imageViewer=imageViewer;
     }
     

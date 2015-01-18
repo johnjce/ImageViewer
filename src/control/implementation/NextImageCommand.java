@@ -8,7 +8,8 @@ public class NextImageCommand implements Command {
 
     private ImageViewer imageViewer;
     
-    public NextImageCommand (ImageViewer imageViewer) {
+    @Override
+    public void setImageViewer (ImageViewer imageViewer) {
         this.imageViewer=imageViewer;
     }
     

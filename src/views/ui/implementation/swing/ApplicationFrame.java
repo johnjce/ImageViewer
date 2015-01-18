@@ -1,12 +1,11 @@
 package views.ui.implementation.swing;
 
-import control.implementation.NextImageCommand;
-import control.implementation.PreviousImageCommand;
+import control.Command;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import javax.swing.BorderFactory;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,7 +21,13 @@ public class ApplicationFrame extends JFrame {
         setMinimumSize(new Dimension(1280,835));
         setResizable(false);
         createWidget();
-        setVisible(true);
+    }
+    
+    public void register (Command [] listeners) {
+        ((JButton)panelButton.getComponent(0)).addActionListener(listeners[0]);
+        ((JButton)panelButton.getComponent(1)).addActionListener(listeners[1]);
+        listeners[0].setImageViewer(imageViewer);
+        listeners[1].setImageViewer(imageViewer);
     }
 
     private void createWidget() {
@@ -48,15 +53,9 @@ public class ApplicationFrame extends JFrame {
         };
         JButton nextButton = new JButton("NEXT");
         JButton previousButton = new JButton("PREVIOUS");
-        addListeners(previousButton, nextButton);
         panelButton.add(previousButton);
         panelButton.add(nextButton);
         return panelButton;
-    }
-    
-    private void addListeners (JButton previousButton, JButton nextButton) {
-        previousButton.addActionListener(new PreviousImageCommand(imageViewer)); 
-        nextButton.addActionListener(new NextImageCommand(imageViewer));
     }
     
 }
