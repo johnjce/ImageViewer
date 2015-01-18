@@ -5,7 +5,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -21,6 +20,7 @@ public class ApplicationFrame extends JFrame {
         setMinimumSize(new Dimension(1280,835));
         setResizable(false);
         createWidget();
+        setVisible(true);
     }
     
     public void register (Command [] listeners) {

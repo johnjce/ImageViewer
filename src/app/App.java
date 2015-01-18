@@ -9,6 +9,5 @@ public class App {
     public static void main (String args []) {
         ApplicationFrame frame = new ApplicationFrame();
         frame.register(new Command [] {new NextImageCommand(), new PreviousImageCommand()});
-        frame.setVisible(true);
     }
 }
